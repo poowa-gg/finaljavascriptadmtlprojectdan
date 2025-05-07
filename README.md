@@ -1,3 +1,13 @@
+Processes Explaination for Understanding of the Project🐱‍🏍
+
+Firstly, there is a welcome screen and a button description and id created which has "Enter".
+Click and on it, and the treasures are unfolded.
+
+Then, you will see the:
+Student Detail Section and i call a function to generate flipping student cards and also added function for voice output.
+
+Then, i added some creatvity and fade out animation.
+
 Creativity Explained
 function speakText(text) {
     const speech = new SpeechSynthesisUtterance(text);
