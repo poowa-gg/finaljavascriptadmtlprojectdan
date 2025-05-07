@@ -1,4 +1,4 @@
-Processes Explaination for Understanding of the Project🐱‍🏍
+Explaination of the processes for better understanding of the Project.
 
 Firstly, there is a welcome screen and a button description and id created which has "Enter".
 Click and on it, and the treasures are unfolded.
@@ -6,7 +6,7 @@ Click and on it, and the treasures are unfolded.
 Then, you will see the:
 Student Detail Section and i call a function to generate flipping student cards and also added function for voice output.
 
-Then, i added some creatvity and fade out animation.
+Then, i added some creativity
 
 Creativity Explained
 function speakText(text) {
