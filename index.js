@@ -6,10 +6,27 @@ const students = [
     { firstName: "David", lastName: "Klaus", age: 30, score: 91, courses: ["Medicine", "Computer Science"] }
 ];
 
-// Step: 1. Function to generate flipping student cards
+// Step 1: Create student descriptions using .map()
+const studentDescriptions = students.map(({ firstName, lastName, age, score, courses }) => 
+    `${firstName} ${lastName} is ${age} years old and scored ${score}. They are taking: ${courses.join(", ")}`);
+
+console.log(studentDescriptions);
+
+// Step 2: Log each student's details to the console using .forEach()
+students.forEach(({ firstName, lastName, age, score, courses }) => {
+    console.log(`${firstName} ${lastName} is ${age} years old and scored ${score}. They are taking: ${courses.join(", ")}`);
+});
+
+// Step 3: Function to generate student cards
 function createStudentCards() {
     const studentCardsContainer = document.getElementById("student-cards");
-    students.forEach(({ firstName, lastName, age, score, courses }) => {
+    
+    if (!studentCardsContainer) {
+        console.error("Error: Student cards container not found.");
+        return;
+    }
+
+    const studentCards = students.map(({ firstName, lastName, age, score, courses }) => {
         const studentCard = document.createElement("div");
         studentCard.classList.add("student-card");
 
@@ -26,20 +43,32 @@ function createStudentCards() {
             </div>
         `;
 
-        studentCardsContainer.appendChild(studentCard);
         speakText(`${firstName} ${lastName} is ${age} years old and scored ${score}. Courses: ${courses.join(", ")}`);
+        
+        return studentCard;
     });
+
+    studentCardsContainer.append(...studentCards);
 }
 
-// Step: 3. Function for voice output
+// Step 4: Function for voice output
 function speakText(text) {
     const speech = new SpeechSynthesisUtterance(text);
+    speech.rate = 1.2;
+    speech.pitch = 1;
     window.speechSynthesis.speak(speech);
 }
 
-// Step: 4. Event: Show students after welcome screen
+// Step 5: Event listener to start student display
 document.getElementById("start-btn").addEventListener("click", function () {
-    document.getElementById("welcome-screen").style.display = "none";
-    document.getElementById("student-container").classList.remove("hidden");
-    createStudentCards();
+    const welcomeScreen = document.getElementById("welcome-screen");
+    const studentContainer = document.getElementById("student-container");
+
+    if (welcomeScreen && studentContainer) {
+        welcomeScreen.style.display = "none";
+        studentContainer.classList.remove("hidden");
+        createStudentCards();
+    } else {
+        console.error("Error: Missing required elements.");
+    }
 });
